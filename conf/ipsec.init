@@ -6,6 +6,7 @@
 # description:	Starts, stops and saves ipsec vpn
 #
 # config: /usr/local/etc/ipsec.conf
+# config: /usr/local/etc/strongswan.d
 #
 ### BEGIN INIT INFO
 # Provides: ipsec
@@ -46,13 +47,6 @@ status() {
     return 0
 }
 
-leases() {
-    # list current vpn user
-    $IPSEC_BIN leases
-    ret=0
-	return $ret
-}
-
 restart() {
     $IPSEC_BIN restart
 }
@@ -72,16 +66,12 @@ case "$1" in
 	restart
 	RETVAL=$?
 	;;
-    leases)
-	leases
-	RETVAL=$?
-	;;      
     status)
 	status
 	RETVAL=$?
 	;;
     *)
-	echo $"Usage: ${IPSEC} {start|stop|reload|restart|condrestart|status|panic|save}"
+	echo $"Usage: ${IPSEC} {start|stop|restart|status}"
 	RETVAL=2
 	;;
 esac

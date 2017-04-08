@@ -22,8 +22,5 @@ ipsec pki --pub --in client.pem | ipsec pki --issue --cacert ca.cert.pem --cakey
 # Enable system forward
 sysctl net.ipv4.ip_forward=1
 
-# Disable firewalld and Enable iptables
-#systemctl start iptables && systemctl enable iptables 
-
-# Start ipsec
-ipsec start
+# reboot ipsec vpn
+ipsec restart
