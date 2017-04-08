@@ -5,6 +5,8 @@ MAINTAINER Yifeng,http://www.cnblogs.com/hanyifeng
 
 USER root
 
+ENV container=docker
+
 # Install dep packge
 RUN yum install pam-devel openssl-devel make gcc wget iptables-services -y && yum clean all && rm -rf /var/cache/yum/* 
 #RUN systemctl stop firewalld && systemctl disable firewalld && systemctl start iptables && systemctl enable iptables
@@ -28,8 +30,25 @@ COPY ./conf/strongswan.conf /usr/local/etc/strongswan.conf
 COPY ./conf/ipsec.secrets /usr/local/etc/ipsec.secrets
 COPY ./conf/iptables /etc/sysconfig/iptables
 COPY ./scripts/vpn.sh /usr/bin/vpn.sh
+
+COPY ./conf/ipsec.service /usr/lib/systemd/system/ipsec.service
+COPY ./conf/ipsec.init /usr/libexec/ipsec/ipsec.init
+
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*;
+
+#enable iptables
+RUN systemctl enable iptables.service
+RUN systemctl enable ipsec.service
+
 # Open udp 500\4500 port
 EXPOSE 500:500/udp
 EXPOSE 4500:4500/udp
 # Start ipsec
-CMD ["/bin/bash /usr/bin/vpn.sh"]
+CMD ["/sbin/init"]

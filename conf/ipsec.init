@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# ipsec	Start ipsec vpn
+#
+# chkconfig: 2345 08 92
+# description:	Starts, stops and saves ipsec vpn
+#
+# config: /usr/local/etc/ipsec.conf
+#
+### BEGIN INIT INFO
+# Provides: ipsec
+# Required-Start:
+# Required-Stop:
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: start and stop ipsec vpn
+# Description: Start, stop and save ipsec vpn
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+IPSEC=ipsec
+IPSEC_BIN=/usr/local/sbin/ipsec
+IPSEC_DATA=/usr/local/etc/$IPSEC
+IPSEC_FALLBACK_DATA=${IPSEC_DATA}.fallback
+IPSEC_CONFIG=/etc/sysconfig/${IPSEC}.conf
+VAR_SUBSYS_IPSEC=/var/lock/subsys/$IPSEC
+
+
+
+start() {
+    ret=0
+    $IPSEC_BIN start
+    return $ret
+}
+
+stop() {
+    ret=0
+    $IPSEC_BIN stop
+    return $ret
+}
+
+status() {
+    $IPSEC_BIN status
+    return 0
+}
+
+leases() {
+    # list current vpn user
+    $IPSEC_BIN leases
+    ret=0
+	return $ret
+}
+
+restart() {
+    $IPSEC_BIN restart
+}
+
+
+case "$1" in
+    start)
+	[ -f "$VAR_SUBSYS_IPSEC" ] && exit 0
+	start
+	RETVAL=$?
+	;;
+    stop)
+	stop
+	RETVAL=$?
+	;;
+    restart)
+	restart
+	RETVAL=$?
+	;;
+    leases)
+	leases
+	RETVAL=$?
+	;;      
+    status)
+	status
+	RETVAL=$?
+	;;
+    *)
+	echo $"Usage: ${IPSEC} {start|stop|reload|restart|condrestart|status|panic|save}"
+	RETVAL=2
+	;;
+esac
+
+exit $RETVAL
