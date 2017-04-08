@@ -4,7 +4,7 @@
 
 # Create certificate
 
-mkdir /data/key_files && cd /data/key_files
+cd /data/key_files
 ipsec pki --gen --outform pem > ca.pem 
 ipsec pki --self --in ca.pem --dn "C=cn, O=ilove, CN=jdcloud vpn" --ca --lifetime 3650 --outform pem >ca.cert.pem 
 ipsec pki --gen --outform pem > server.pem 
