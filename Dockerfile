@@ -16,12 +16,12 @@ RUN tar -xf strongswan-5.5.2.tar.gz
 # Configure,make and install
 RUN cd /strongswan-5.5.2 && ./configure  --enable-eap-identity --enable-eap-md5 --enable-eap-mschapv2 --enable-eap-tls --enable-eap-ttls --enable-eap-peap --enable-eap-tnc --enable-eap-dynamic --enable-eap-radius --enable-xauth-eap --enable-xauth-pam  --enable-dhcp  --enable-openssl  --enable-addrblock --enable-unity --enable-certexpire --enable-radattr --enable-swanctl --enable-openssl --disable-gmp && make && make install
 
-RUN rm -rf /strongswan-5.5.2 && rm -f /strongswan-5.5.2.tar.gz
 RUN \cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
 
 # Create cert dir
 RUN mkdir /data/key_files
 
+RUN rm -rf /strongswan-5.5.2 && rm -f /strongswan-5.5.2.tar.gz
 # Copy configure file to ipsec
 COPY ./conf/ipsec.conf /usr/local/etc/ipsec.conf 
 COPY ./conf/strongswan.conf /usr/local/etc/strongswan.conf 
