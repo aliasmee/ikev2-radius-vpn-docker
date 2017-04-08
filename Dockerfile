@@ -19,7 +19,7 @@ RUN cd /strongswan-5.5.2 && ./configure  --enable-eap-identity --enable-eap-md5 
 RUN \cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
 
 # Create cert dir
-RUN mkdir /data/key_files
+RUN mkdir -p /data/key_files
 
 RUN rm -rf /strongswan-5.5.2 && rm -f /strongswan-5.5.2.tar.gz
 # Copy configure file to ipsec
