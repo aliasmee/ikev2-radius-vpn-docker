@@ -10,7 +10,7 @@ ipsec pki --self --in ca.pem --dn "C=cn, O=ilove, CN=jdcloud vpn" --ca --lifetim
 ipsec pki --gen --outform pem > server.pem 
 ipsec pki --pub --in server.pem | ipsec pki --issue --lifetime 1200 --cacert ca.cert.pem --cakey ca.pem --dn "C=cn, O=ilove, CN=202.77.130.178" --san="202.77.130.178" --flag serverAuth --flag ikeIntermediate --outform pem > server.cert.pem 
 ipsec pki --gen --outform pem > client.pem 
-ipsec pki --pub --in client.pem | ipsec pki --issue --cacert ca.cert.pem --cakey ca.pem --dn "C=cn, O=ilove, CN=jdcloud vpn client" --outform pem > client.cert.pe
+ipsec pki --pub --in client.pem | ipsec pki --issue --cacert ca.cert.pem --cakey ca.pem --dn "C=cn, O=ilove, CN=jdcloud vpn client" --outform pem > client.cert.pem
 
 # Copy certificate to ipsec dir
 \cp ca.cert.pem /usr/local/etc/ipsec.d/cacerts/ 
