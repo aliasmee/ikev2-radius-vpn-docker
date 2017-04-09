@@ -57,12 +57,12 @@ JWT/0bfN/sOtDWXe8d1SitU7YqTKCWwI2PAxhBdx4fhptE8DKY7O4yd8sc6HyA==
 
 5. Copy this certificate to the remote client and name it xx.xxx.pem（Note：Windows need to modify the suffix pem for cer can be installed）
 example:<br>
-![](https://github.com/aliasmee/IKEv2-radius-vpn/raw/master/Mac_install_cert.png)
+![](https://github.com/aliasmee/IKEv2-radius-vpn/blob/master/Mac_install_cert.png)
 6. Connect vpn it！
 
 ## Plan list
-＊ Dynamically generated based on the environment variable
-＊ Combined with Freeradius achieve AAA
+* Dynamically generated based on the environment variable
+* Combined with Freeradius achieve AAA
 
 
 ## Authors
