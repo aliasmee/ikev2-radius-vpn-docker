@@ -1,16 +1,15 @@
 # A runing IKEv2 VPN's container
-============================
 ## Overview ##
 Let the IKEv2 vpn service run in the Docker container, do not need too much configuration, you just take the mirror on the Docker server, then run a container, the container generated certificate copy installed on your client, you can connect vpn The server.Welcome everyone's discussion！:blush:
 
 
 ## Features
-* 1. StrongSwan provides ikev2 VPN service
-* 2. When the container is run, the certificate file is dynamically generated based on the environment variable (last version)
-* 3. Combined with Freeradius achieve Authentication, authorization, and accounting (AAA) (last version)
+* StrongSwan provides ikev2 VPN service
+* When the container is run, the certificate file is dynamically generated based on the environment variable (last version)
+* Combined with Freeradius achieve Authentication, authorization, and accounting (AAA) (last version)
 
 ## Prerequisites
-* 1. The host machines and containers must be opened within ip_forward （net.ipv4.ip_forward）
+* The host machines and containers must be opened within ip_forward （net.ipv4.ip_forward）
 
 ## Usage examples
 1. Clone git
@@ -20,21 +19,21 @@ Let the IKEv2 vpn service run in the Docker container, do not need too much conf
 
 2. Modify the configuration file
 ```Bash
-cd IKEv2-radius-vpn/
-sed -i 's/leftid=202.77.130.178/leftid=Your‘s public IP/g' conf/ipsec.conf
-sed -i "s/testOnePass/Your's VPN login password/g" conf/ipsec.secrets ［options］
-sed -i "s/202.77.130.178/Your's public IP/g" scripts/vpn
+# cd IKEv2-radius-vpn/
+# sed -i 's/leftid=202.77.130.178/leftid=Your‘s public IP/g' conf/ipsec.conf
+# sed -i "s/testOnePass/Your's VPN login password/g" conf/ipsec.secrets ［options］
+# sed -i "s/202.77.130.178/Your's public IP/g" scripts/vpn
 ```
 
 3. Using docker build can create an automated build image,Then use the following command to run
 ```Bash
-docker build -t ikev2 .
-docker run -itd --privileged --cap-add=SYS_ADMIN -p 500:500/udp -p 4500:4500/udp  --user=root --name ikev2-vpn-server ikev2
+# docker build -t ikev2 .
+# docker run -itd --privileged --cap-add=SYS_ADMIN -p 500:500/udp -p 4500:4500/udp  --user=root --name ikev2-vpn-server ikev2
 ```
 
 4. View the certificate contents
 ```Bash
-docker exec -it ikev2-vpn-server cat /data/key_files/ca.cert.pem
+# docker exec -it ikev2-vpn-server cat /data/key_files/ca.cert.pem
 -----BEGIN CERTIFICATE-----
 MIIDKjCCAhKgAwIBAgIIZeB95hPt1/AwDQYJKoZIhvcNAQELBQAwMzELMAkGA1UE
 BhMCY24xDjAMBgNVBAoTBWlsb3ZlMRQwEgYDVQQDEwtqZGNsb3VkIHZwbjAeFw0x
@@ -57,20 +56,21 @@ JWT/0bfN/sOtDWXe8d1SitU7YqTKCWwI2PAxhBdx4fhptE8DKY7O4yd8sc6HyA==
 ```
 
 5. Copy this certificate to the remote client and name it xx.xxx.pem（Note：Windows need to modify the suffix pem for cer can be installed）
+example:<br>
+![](https://github.com/aliasmee/IKEv2-radius-vpn/raw/master/Mac_install_cert.png)
+6. Connect vpn it！
 
-6. Connect vpn it
-
-##Plan list
+## Plan list
 ＊ Dynamically generated based on the environment variable
 ＊ Combined with Freeradius achieve AAA
 
 
 ## Authors
-Name：	Yifeng Han
-e-mail: xhanyifeng@gmail.com
+Name:	Yifeng Han<br>
+e-mail:	 xhanyifeng@gmail.com
 
 ## Licensing
-This project is licensed under the GNU General Public License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License - see the [LICENSE.md](https://github.com/aliasmee/IKEv2-radius-vpn/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 https://www.strongswan.org/
