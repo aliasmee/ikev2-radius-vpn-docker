@@ -5,7 +5,9 @@ MAINTAINER Yifeng,http://www.cnblogs.com/hanyifeng
 
 USER root
 
-ENV container=docker
+# Define a dynamic variable for Certificate CN
+ENV HOSTIP ''
+
 
 # Install dep packge
 RUN yum install pam-devel openssl-devel make gcc wget iptables-services -y && yum clean all && rm -rf /var/cache/yum/* 
@@ -35,7 +37,6 @@ COPY ./conf/iptables /etc/sysconfig/iptables
 
 # Make cert script and copy cert to ipsec dir
 COPY ./scripts/vpn /usr/bin/vpn
-RUN /bin/bash /usr/bin/vpn
 
 # Let iptables and ipsec start is Boot
 COPY ./conf/ipsec.service /usr/lib/systemd/system/ipsec.service
