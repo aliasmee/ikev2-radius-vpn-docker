@@ -2,7 +2,6 @@
 ## Overview ##
 Let the IKEv2 vpn service run in the Docker container, do not need too much configuration, you just take the mirror on the Docker server, then run a container, the container generated certificate copy installed on your client, you can connect vpn The server.Welcome everyone's discussion！:blush:
 
-
 ## Features
 * StrongSwan provides ikev2 VPN service
 * In addition to Android, but other devices by default comes with IKEv2 dial clients
@@ -66,10 +65,11 @@ example:<br>
 
 ## Currently supported client device 
 Only test for the following client device system，You can test on the other system versions and feedback ！
-Mac: 10.11.4
-iOS: 10.2
-Windows: 10
-Android：Download strongSwan APK
+`Mac`: 10.11.4<br>
+`iOS`: 10.2<br>
+`Windows`: 10<br>
+`Centos 6.8`: Download strongSwan tar
+`Android`：Download strongSwan APK
 
 ## Authors
 Name:	Yifeng Han<br>
