@@ -4,7 +4,7 @@ Let the IKEv2 vpn service run in the Docker container, do not need too much conf
 
 ## Features
 * StrongSwan provides ikev2 VPN service
-* In addition to Android, but other devices by default comes with IKEv2 dial clients
+* In addition to Android and Linux, but other devices(Winodws 7+,Mac,iOS) by default comes with IKEv2 dial clients
 * When the container is run, the certificate file is dynamically generated based on the environment variable (last version)
 * Combined with Freeradius achieve Authentication, authorization, and accounting (AAA) (last version)
 
@@ -64,12 +64,12 @@ example:<br>
 * Combined with Freeradius achieve AAA
 
 ## Currently supported client device 
-Only test for the following client device system，You can test on the other system versions and feedback ！
-`Mac`: 10.11.4<br>
-`iOS`: 10.2<br>
-`Windows`: 10<br>
-`Centos 6.8`: Download strongSwan tar
-`Android`：Download strongSwan APK
+Only test for the following client device system，You can test on the other system versions and feedback ！<br>
+`Mac`:	10.11.4<br>
+`iOS`:	10.2<br>
+`Windows`:	10<br>
+`Centos`:	6.8<br>
+`Android`：(Download strongSwan APK)
 
 ## Authors
 Name:	Yifeng Han<br>
