@@ -10,7 +10,7 @@ ENV HOSTIP '' \
 
 # Install dep packge and strongSwan
 RUN yum install pam-devel openssl-devel make gcc wget iptables-services -y && yum clean all && rm -rf /var/cache/yum/* && wget -c $STRONGSWAN_VERSION && \
-  tar -xf strongswan-5.5.2.tar.gz && cd /strongswan-5.5.2 && ./configure  --enable-eap-identity --enable-eap-md5 --enable-eap-mschapv2 --enable-eap-tls \
+  tar -xf strongswan-5.5.3.tar.gz && cd /strongswan-5.5.3 && ./configure  --enable-eap-identity --enable-eap-md5 --enable-eap-mschapv2 --enable-eap-tls \
   --enable-eap-ttls --enable-eap-peap --enable-eap-tnc --enable-eap-dynamic --enable-eap-radius --enable-xauth-eap --enable-xauth-pam  --enable-dhcp  \
   --enable-openssl  --enable-addrblock --enable-unity --enable-certexpire --enable-radattr --enable-swanctl --enable-openssl --disable-gmp && make && make install
 
@@ -18,7 +18,7 @@ RUN yum install pam-devel openssl-devel make gcc wget iptables-services -y && yu
 RUN \cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
 
 # Create cert dir & Clear temp file
-RUN mkdir -p /data/key_files && rm -rf /strongswan-5.5.2 && rm -f /strongswan-5.5.2.tar.gz
+RUN mkdir -p /data/key_files && rm -rf /strongswan-5.5.3 && rm -f /strongswan-5.5.3.tar.gz
 
 # Use mount volume ! Copy configure file to ipsec\iptables
 # COPY ./conf/ipsec.conf /usr/local/etc/ipsec.conf 
