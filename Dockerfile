@@ -4,8 +4,13 @@ FROM centos
 # MAINTAINER Yifeng,http://www.cnblogs.com/hanyifeng
 
 # Define a dynamic variable for Certificate CN
+<<<<<<< Updated upstream
 ENV HOSTIP ''
 ENV STRONGSWAN_VERSION 5.5.3
+=======
+ENV HOSTIP='' \
+  STRONGSWAN_VERSION=https://download.strongswan.org/strongswan-5.5.3.tar.gz
+>>>>>>> Stashed changes
 
 
 # Install dep packge and strongSwan
