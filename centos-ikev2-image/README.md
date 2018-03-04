@@ -73,7 +73,6 @@ Only test for the following client device system，You can test on the other sys
 
 ## Authors
 Name:	Yifeng Han<br>
-e-mail:	 xhanyifeng@gmail.com
 
 ## Licensing
 This project is licensed under the GNU General Public License - see the [LICENSE.md](https://github.com/aliasmee/IKEv2-radius-vpn/blob/master/LICENSE) file for details

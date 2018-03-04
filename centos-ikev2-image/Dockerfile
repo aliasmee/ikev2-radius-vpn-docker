@@ -1,7 +1,7 @@
 # From centos7:latest image
 FROM centos
 
-MAINTAINER Yifeng,http://www.cnblogs.com/hanyifeng
+MAINTAINER @aliasmee
 
 USER root
 
